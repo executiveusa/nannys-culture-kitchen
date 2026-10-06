@@ -273,4 +273,23 @@ export default defineSchema({
     configJson: v.string(),
     updatedAt: v.number(),
   }).index("bySession", ["sessionId"]),
+
+  // Nanny: public planning requests from worksites, pop-ups, events, and general inquiries.
+  nannyPublicLeads: defineTable({
+    leadType: v.union(v.literal("worksite"), v.literal("event"), v.literal("popup"), v.literal("general")),
+    organization: v.optional(v.string()),
+    contactName: v.string(),
+    email: v.optional(v.string()),
+    phone: v.optional(v.string()),
+    location: v.string(),
+    headCount: v.optional(v.number()),
+    serviceDate: v.optional(v.string()),
+    serviceWindow: v.optional(v.string()),
+    notes: v.optional(v.string()),
+    source: v.string(),
+    status: v.union(v.literal("new"), v.literal("contacted"), v.literal("qualified"), v.literal("closed")),
+    createdAt: v.number(),
+  })
+    .index("byCreatedAt", ["createdAt"])
+    .index("byStatus", ["status"]),
 });

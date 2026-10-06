@@ -88,3 +88,36 @@ export const getBrandConfig = query({
       .first();
   },
 });
+
+
+export const submitPublicLead = mutation({
+  args: {
+    leadType: v.union(v.literal("worksite"), v.literal("event"), v.literal("popup"), v.literal("general")),
+    organization: v.optional(v.string()),
+    contactName: v.string(),
+    email: v.optional(v.string()),
+    phone: v.optional(v.string()),
+    location: v.string(),
+    headCount: v.optional(v.number()),
+    serviceDate: v.optional(v.string()),
+    serviceWindow: v.optional(v.string()),
+    notes: v.optional(v.string()),
+    source: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const hasEmail = Boolean(args.email?.trim());
+    const hasPhone = Boolean(args.phone?.trim());
+    if (!hasEmail && !hasPhone) {
+      throw new Error("Add an email or phone number so we know how to reach you.");
+    }
+    if (args.headCount !== undefined && (!Number.isInteger(args.headCount) || args.headCount < 1 || args.headCount > 5000)) {
+      throw new Error("Crew size must be between 1 and 5000.");
+    }
+
+    return ctx.db.insert("nannyPublicLeads", {
+      ...args,
+      status: "new",
+      createdAt: Date.now(),
+    });
+  },
+});
