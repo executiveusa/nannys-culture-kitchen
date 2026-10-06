@@ -1,58 +1,31 @@
-import { json } from '@vercel/remix';
-import type { LoaderFunctionArgs } from '@vercel/remix';
 import type { LinksFunction, MetaFunction } from '@vercel/remix';
-import { ClientOnly } from 'remix-utils/client-only';
-import { Header } from '~/components/header/Header';
-import { Homepage } from '~/components/Homepage.client';
+import publicStyles from '~/styles/nannys-culture-kitchen.css?url';
+import { NannyHome } from '~/components/nanny/public/NannyHome';
 
-export const meta: MetaFunction = () => {
-  return [
-    { title: 'Chef by Convex | Generate realtime full‑stack apps' },
-    { name: 'description', content: 'Cook up something hot with Chef, the full-stack AI coding agent from Convex' },
-    {
-      property: 'og:image',
-      content: '/social_preview_index.png',
-    },
-  ];
-};
+export const meta: MetaFunction = () => [
+  { title: "Nanny's Culture Kitchen | Plant-Based Worksite Lunches in Puerto Vallarta" },
+  {
+    name: 'description',
+    content:
+      "Nanny's Culture Kitchen is a 100% plant-based culture kitchen in Puerto Vallarta focused on worksite lunches, pop-ups, and events.",
+  },
+  { property: 'og:title', content: "Nanny's Culture Kitchen" },
+  {
+    property: 'og:description',
+    content: 'Plant-based comfort food brought to worksites, pop-ups, and events in Puerto Vallarta.',
+  },
+  { property: 'og:image', content: '/nannys/hero-dome.webp' },
+  { name: 'theme-color', content: '#071a2d' },
+];
 
 export const links: LinksFunction = () => [
+  { rel: 'stylesheet', href: publicStyles },
   {
-    rel: 'canonical',
-    href: 'https://chef.convex.dev/',
+    rel: 'stylesheet',
+    href: 'https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap',
   },
 ];
 
-export const loader = async (args: LoaderFunctionArgs) => {
-  const url = new URL(args.request.url);
-  let code: string | null = url.searchParams.get('code');
-  const state = url.searchParams.get('state');
-  // If state is also set, this is probably the GitHub OAuth login flow finishing.
-  // The code is probably not for us.
-  if (state) {
-    code = null;
-  }
-  return json({ code });
-};
-
-// Home page that asks the user to login and provide an initial prompt. After
-// starting the chat, all of the globals' in-memory state is preserved as it
-// switches to the chat view (we do *not* do a full page reload and go to the
-// chat route). This route is optimized for making the initial experience
-// really seamless.
-//
-// It's critical that going back to the homepage or to other chats use a `<a>`
-// tag so all in-memory state is rebuilt from scratch.
 export default function Index() {
-  /*
-  const location = useLocation();
-  const experience = chooseExperience(navigator.userAgent, new URLSearchParams(location.search));
-  */
-
-  return (
-    <div className="flex size-full flex-col bg-bolt-elements-background-depth-1">
-      <Header />
-      <ClientOnly>{() => <Homepage />}</ClientOnly>
-    </div>
-  );
+  return <NannyHome />;
 }
