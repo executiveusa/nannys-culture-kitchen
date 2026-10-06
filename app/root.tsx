@@ -152,7 +152,7 @@ function AuthenticatedAppLayout({ children }: { children: React.ReactNode }) {
     <>
       <AuthKitProvider
         clientId={import.meta.env.VITE_WORKOS_CLIENT_ID}
-        redirectUri={globalThis.process.env.WORKOS_REDIRECT_URI}
+        redirectUri={loaderData?.ENV.WORKOS_REDIRECT_URI}
         apiHostname={import.meta.env.VITE_WORKOS_API_HOSTNAME}
       >
         <ClientOnly>
