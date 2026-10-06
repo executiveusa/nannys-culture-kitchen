@@ -22,7 +22,7 @@ export default function ContactPage() {
       <section className="nck-page-hero">
         <p className="nck-eyebrow">Contact</p>
         <h1>Start with the job you need done.</h1>
-        <p>For worksite lunches, pop-ups, events, or another request, send the basics below. We are not publishing unverified phone numbers, social handles, or addresses.</p>
+        <p>For worksite lunches, pop-ups, events, or another request, send the basics below and the contact information you want us to use.</p>
       </section>
       <WorksiteLeadForm
         leadType="general"

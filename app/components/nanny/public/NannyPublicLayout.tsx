@@ -71,7 +71,6 @@ export function NannyPublicLayout({ children }: { children: ReactNode }) {
           <a href="/events">Events</a>
           <a href="/story">Story</a>
           <a href="/contact">Contact</a>
-          <a href="/nanny">Nanny OS</a>
         </div>
       </footer>
     </div>

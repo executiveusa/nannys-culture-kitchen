@@ -50,9 +50,9 @@ export default function WorksitesPage() {
       </section>
 
       <section className="nck-truth-note">
-        <p className="nck-eyebrow">What is not being claimed yet</p>
-        <h2>No fake route map. No invented fleet partners. No made-up delivery times.</h2>
-        <p>Those become public only after the first routes and operating windows are verified.</p>
+        <p className="nck-eyebrow">Service planning</p>
+        <h2>Routes and lunch windows are confirmed for each worksite.</h2>
+        <p>Send the location and crew details first. We use that request to plan a realistic service window.</p>
       </section>
 
       <WorksiteLeadForm />

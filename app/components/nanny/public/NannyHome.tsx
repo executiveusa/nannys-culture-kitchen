@@ -59,7 +59,7 @@ export function NannyHome() {
       <section className="nck-menu-preview" aria-labelledby="menu-preview-title">
         <div className="nck-section-heading nck-section-heading-light">
           <p className="nck-eyebrow">Sample menu direction</p>
-          <h2 id="menu-preview-title">Portable comfort food. Fresh ingredients. No fake meat theater required.</h2>
+          <h2 id="menu-preview-title">Portable comfort food. Fresh ingredients. Built to travel.</h2>
           <p>Availability and final dishes change by service. Prices are not published until the operating menu is locked.</p>
         </div>
         <div className="nck-menu-lines">
